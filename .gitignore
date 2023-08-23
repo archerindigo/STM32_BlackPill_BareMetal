@@ -6,7 +6,9 @@
 *.hex
 *.srec
 *.list
+*.lss
 *.map
 *.stylecheck
 generated.*.ld
 .gdb_history
+datasheets/
