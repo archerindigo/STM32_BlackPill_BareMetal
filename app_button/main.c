@@ -1,5 +1,6 @@
 #include <libopencm3/stm32/rcc.h>
 #include <libopencm3/stm32/gpio.h>
+#include <stdbool.h>
 
 /* Pin definition */
 // Built-in LED (PC13)
@@ -17,6 +18,19 @@ static void delay_cycles(uint32_t cycles)
     while (cycles--) {
         __asm__("nop");     // assembly of no operation
     }
+}
+
+static bool read_btn_debounce(void)
+{
+    bool btn_state = gpio_get(BTN_PORT, BTN_PIN);
+
+    if (!btn_state) {       // Pin state is false (LOW) when the button is pressed
+        delay_cycles(8400000 / 100);     // ~50ms
+        if (!gpio_get(BTN_PORT, BTN_PIN))
+            return true;    // button is indeed pressed
+    }
+
+    return false;   // button not pressed
 }
 
 static void init(void)
@@ -46,9 +60,7 @@ int main(void)
 
     /* Main loop */
     while (1) {
-        bool btn_state = gpio_get(BTN_PORT, BTN_PIN);
-
-        if (!btn_state) {       // Pin state is false (LOW) when the button is pressed
+        if (read_btn_debounce()) {
             if (!btn_pressed)   // To make sure the LED will toggle once during a single press
                 gpio_toggle(LED_PORT, LED_PIN);
             btn_pressed = true;
