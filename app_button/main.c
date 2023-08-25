@@ -47,7 +47,6 @@ static void init(void)
 
     // Setup for push button
     gpio_mode_setup(BTN_PORT, GPIO_MODE_INPUT, GPIO_PUPD_PULLUP, BTN_PIN);    // Pull-up required
-    gpio_set_output_options(BTN_PORT, GPIO_OTYPE_PP, GPIO_OSPEED_2MHZ, BTN_PIN);
 }
 
 int main(void)
