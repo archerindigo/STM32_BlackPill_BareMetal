@@ -1,3 +1,10 @@
+/******************************************************************************
+ * app_2_button
+ * 
+ * Program 2: Toggle the built-in LED upon button press
+ * 
+ * Demostrate the setup of input GPIO with pull-up
+ *****************************************************************************/
 #include <libopencm3/stm32/rcc.h>
 #include <libopencm3/stm32/gpio.h>
 #include <stdbool.h>

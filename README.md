@@ -24,10 +24,10 @@ git clone --recurse-submodules https://github.com/archerindigo/STM32_BlackPill_B
 
 ## Build the Applications
 
-Each application project is stored in separated directory with the prefix `app_`. Each project contains its own Makefile to build the binaries. From the root directory of the workspace, you may make with:
+Each application project is stored in separated directory with the prefix `app_n`. Each project contains its own Makefile to build the binaries. From the root directory of the workspace, you may make with:
 
 ```
-make -C app_xxx
+make -C app_n_xxx
 ```
 
 All binaries will be located in the directory `bin/` within the project.

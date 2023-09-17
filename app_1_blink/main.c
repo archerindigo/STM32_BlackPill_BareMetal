@@ -1,3 +1,11 @@
+/******************************************************************************
+ * app_1_blink
+ * 
+ * Program 1: Blink the built-in LED of STM32 Black Pill
+ * 
+ * Demostrate the basic setup and GPIO output of a STM32 using libopencm3
+ *****************************************************************************/
+
 #include <libopencm3/stm32/rcc.h>   // Reset and Clock Controller
 #include <libopencm3/stm32/gpio.h>  // GPIO
 
@@ -9,7 +17,7 @@
 /* A simple delay function
  * 
  * Note: each cycle takes about 5 ticks under -Os optimization
-*/
+ */
 static void delay_cycles(uint32_t cycles)
 {
     while (cycles--) {
@@ -32,7 +40,7 @@ int main(void)
     /* Main loop */
     while (1) {
         gpio_toggle(LED_PORT, LED_PIN);
-        delay_cycles(84000000 / 5);     // delay 1s
+        delay_cycles(84000000 / 3);     // delay 1s
     }
  
     return 0;
